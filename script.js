@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const salesToOffset = totalCosts / (profitMargin / 100);
     const round = num => Math.round(num);
 
-        // FINAL HTML — ? next to text, tooltip works, dollar on right
+        // FINAL HTML — ? next to text, dollar OUTSIDE
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
       </p>
     `;
-
+    
     output.innerHTML = resultsHTML;
   }
 
