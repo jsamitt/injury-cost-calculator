@@ -104,4 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial calc
   updateDirectCost();
+  // Mobile: Toggle tooltip on tap
+  document.querySelectorAll('.tooltip-trigger').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const content = trigger.nextElementSibling;
+      const isVisible = content.style.display === 'block';
+      // Hide all others
+      document.querySelectorAll('.tooltip-content').forEach(c => c.style.display = 'none');
+      // Toggle this one
+      content.style.display = isVisible ? 'none' : 'block';
+    });
+  });
+
+  // Hide on click outside
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.tooltip-content').forEach(c => c.style.display = 'none');
 });
