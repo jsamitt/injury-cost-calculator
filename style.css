@@ -31,13 +31,19 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 @media (max-width: 480px) {
   .container { margin:1rem; padding:1rem; }
 }
-/* WORKING TOOLTIP - Tested on GitHub Pages */
+/* FINAL TOOLTIP - ? bubble next to text */
 .cost-item {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
+}
+
+.label-with-tooltip {
+  display: flex;
+  align-items: center;
+  flex: 1;
 }
 
 .label {
@@ -116,16 +122,17 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 }
 
 /* Show on hover */
-.cost-item:hover .tooltip-content {
+.label-with-tooltip:hover .tooltip-content {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
 /* Mobile tap */
-.tooltip-trigger:active ~ .tooltip-content {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
+@media (pointer: coarse) {
+  .label-with-tooltip .tooltip-trigger:active ~ .tooltip-content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
