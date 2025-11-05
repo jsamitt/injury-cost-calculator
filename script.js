@@ -104,21 +104,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial calc
   updateDirectCost();
-  // Mobile: Toggle tooltip on tap
-  document.querySelectorAll('.tooltip-trigger').forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
+    // Ensure tooltips work on mobile tap
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('tooltip-trigger')) {
       e.stopPropagation();
-      const content = trigger.nextElementSibling;
-      const isVisible = content.style.display === 'block';
-      // Hide all others
-      document.querySelectorAll('.tooltip-content').forEach(c => c.style.display = 'none');
-      // Toggle this one
-      content.style.display = isVisible ? 'none' : 'block';
-    });
-  });
-
-  // Hide on click outside
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.tooltip-content').forEach(c => c.style.display = 'none');
+      const content = e.target.nextElementSibling;
+      const isVisible = content.style.opacity === '1';
+      document.querySelectorAll('.tooltip-content').forEach(c => {
+        c.style.opacity = '0';
+        c.style.visibility = 'hidden';
+      });
+      if (!isVisible) {
+        content.style.opacity = '1';
+        content.style.visibility = 'visible';
+      }
+    } else {
+      document.querySelectorAll('.tooltip-content').forEach(c => {
+        c.style.opacity = '0';
+        c.style.visibility = 'hidden';
+      });
+    }
   });
 });
