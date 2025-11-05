@@ -22,7 +22,7 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 .placeholder { color:#666; font-style:italic; }
 .cost-breakdown { margin:1rem 0; }
 
-/* Cost Item */
+/* Cost Item - Fixed Layout */
 .cost-item {
   position: relative;
   display: flex;
@@ -30,18 +30,23 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   align-items: center;
   padding: 0.5rem 0;
   border-bottom: 1px solid #eee;
+  gap: 8px;
 }
 
 /* Label + Tooltip Wrapper */
-.label-with-tooltip {
-  position: relative;
+.cost-label-with-tooltip {
   display: flex;
   align-items: center;
   flex: 1;
 }
 
-.label {
+.cost-label {
   flex: 1;
+}
+
+.cost-value {
+  white-space: nowrap;
+  font-weight: 600;
 }
 
 /* Tooltip Trigger */
@@ -118,14 +123,14 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 }
 
 /* SHOW TOOLTIP */
-.label-with-tooltip:hover .tooltip-content,
+.cost-item:hover .tooltip-content,
 .tooltip-content.show {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-/* Mobile */
+/* Mobile tap */
 @media (pointer: coarse) {
   .tooltip-trigger:active ~ .tooltip-content {
     opacity: 1;
