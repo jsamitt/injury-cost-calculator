@@ -61,17 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ROUND TO NEAREST DOLLAR
     const round = num => Math.round(num);
 
-        // Results HTML with enhanced tooltip
+        // Results HTML with working tooltip
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
         <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
-                <div class="cost-item">
-          <span>Indirect Costs (Lost Productivity, etc.)</span>
+        <div class="cost-item">
+          <span class="label">Indirect Costs (Lost Productivity, etc.)</span>
           <span class="tooltip-trigger">?</span>
           <div class="tooltip-content">
-            <p style="margin:0 0 0.5rem 0; font-weight:600;">Types of indirect costs may include:</p>
-            <ul>
+            <p class="tooltip-title">Types of indirect costs may include:</p>
+            <ul class="tooltip-list">
               <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
               <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
               <li>Overtime costs necessitated by the injury</li>
