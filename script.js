@@ -61,19 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // ROUND TO NEAREST DOLLAR
     const round = num => Math.round(num);
 
-            // Results HTML
+                // Results HTML with CSS tooltip
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
         <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
-        <div class="cost-item"><span title="Types of indirect costs may include:
+        <div class="cost-item">
+          <span class="tooltip" data-tooltip="Types of indirect costs may include:
 • Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)
 • Wage costs related to time lost through work stoppage associated with the worker injury
 • Overtime costs necessitated by the injury
 • Administrative time spent by supervisors, safety personnel, and clerical workers after an injury
 • Training costs for a replacement worker
 • Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees
-• Clean-up, repair, and replacement costs of damaged material, machinery, and property">Indirect Costs (Lost Productivity, etc.):</span><strong>$${round(indirectCosts).toLocaleString()}</strong></div>
+• Clean-up, repair, and replacement costs of damaged material, machinery, and property">
+            Indirect Costs (Lost Productivity, etc.)
+            <span class="tooltip-icon">i</span>
+          </span>
+          <strong>$${round(indirectCosts).toLocaleString()}</strong>
+        </div>
         <hr style="margin:1rem 0;">
         <div class="cost-item" style="font-size:1.1rem;"><span>Total Estimated Cost:</span><strong style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong></div>
         <div class="cost-item" style="font-size:1.1rem;"><span>Sales Needed to Offset (at ${profitMargin}% margin):</span><strong style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong></div>
