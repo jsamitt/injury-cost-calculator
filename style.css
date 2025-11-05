@@ -31,9 +31,18 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 @media (max-width: 480px) {
   .container { margin:1rem; padding:1rem; }
 }
-/* Enhanced Tooltip */
+/* Enhanced Tooltip - Fixed & Clickable */
+.cost-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .tooltip-trigger {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 18px;
   height: 18px;
   margin-left: 6px;
@@ -41,55 +50,74 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   color: white;
   font-size: 11px;
   font-weight: bold;
-  line-height: 18px;
-  text-align: center;
+  line-height: 1;
   border-radius: 50%;
   cursor: pointer;
-  vertical-align: middle;
   user-select: none;
+  flex-shrink: 0;
 }
 
-.cost-item:hover .tooltip-content,
-.cost-item .tooltip-trigger:active ~ .tooltip-content {
-  display: block;
+.tooltip-content {
+  display: none;
   position: absolute;
   left: 0;
-  top: 100%;
-  margin-top: 8px;
-  padding: 12px;
+  top: calc(100% + 8px);
   background: #333;
   color: white;
+  padding: 12px;
+  border-radius: 6px;
   font-size: 0.85rem;
   line-height: 1.5;
-  border-radius: 6px;
+  max-width: 340px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 1000;
-  max-width: 340px;
   word-wrap: break-word;
 }
 
-.cost-item .tooltip-content::before {
+.tooltip-content::before {
   content: "";
   position: absolute;
-  left: 20px;
+  left: 14px;
   top: -6px;
   border: 6px solid transparent;
   border-bottom-color: #333;
 }
 
-.cost-item .tooltip-content ul {
+.tooltip-content p {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.tooltip-content ul {
   margin: 0;
   padding-left: 1.2rem;
+  list-style: none;
 }
 
-.cost-item .tooltip-content li {
+.tooltip-content li {
   position: relative;
-  padding-left: 0.3rem;
-  text-indent: -0.3rem;
+  padding-left: 0.5rem;
+  text-indent: -0.5rem;
+  margin-bottom: 0.25rem;
 }
 
-.cost-item .tooltip-content li::before {
+.tooltip-content li::before {
   content: "•";
   position: absolute;
   left: -0.8rem;
+  color: #aaa;
+}
+
+/* Show on hover OR click */
+.cost-item:hover .tooltip-content,
+.cost-item .tooltip-trigger:active ~ .tooltip-content,
+.cost-item .tooltip-trigger:focus ~ .tooltip-content {
+  display: block;
+}
+
+/* Mobile tap support */
+@media (pointer: coarse) {
+  .tooltip-trigger:active ~ .tooltip-content {
+    display: block;
+  }
 }
