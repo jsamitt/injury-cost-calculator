@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const customInput = document.getElementById('custom-cost');
   const profitInput = document.getElementById('profit-margin');
 
-  // Update direct cost on injury select
   function updateDirectCost() {
     const selected = injurySelect.value;
     if (selected === 'custom') {
@@ -16,14 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
       customField.style.display = 'none';
       const option = injurySelect.options[injurySelect.selectedIndex];
       const cost = option.getAttribute('data-cost');
-      if (cost) {
-        customInput.value = '';
-      }
+      if (cost) customInput.value = '';
     }
     calculateCosts();
   }
 
-  // Event listeners
   injurySelect.addEventListener('change', updateDirectCost);
   [customInput, profitInput].forEach(el => {
     el.addEventListener('input', calculateCosts);
@@ -54,10 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const indirectCosts = directCosts * indirectMultiplier;
     const totalCosts = directCosts + indirectCosts;
     const salesToOffset = totalCosts / (profitMargin / 100);
-
     const round = num => Math.round(num);
 
-    // FINAL HTML — ? next to text, tooltip inside wrapper
+    // FINAL HTML — ? next to text, dollar OUTSIDE wrapper
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
@@ -94,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <strong style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong>
         </div>
       </div>
-      <p class="note" style="margin-top:1rem; font-size:0.9rem; color:#555;">
+      <p class="note" brutal="margin-top:1rem; font-size:0.9rem; color:#555;">
         This does not include additional possible costs from:
         <ul style="margin:0.5rem 0 0.5rem 1.5rem; padding:0; color:#555; font-size:0.9rem;">
           <li>OSHA fines and any associated legal action</li>
@@ -112,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateDirectCost();
 
-  // MOBILE TAP + CLICK OUTSIDE
+  // Mobile tap + click outside
   document.addEventListener('click', (e) => {
     const trigger = e.target.closest('.tooltip-trigger');
     if (trigger) {
