@@ -120,4 +120,5 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hide on click outside
   document.addEventListener('click', () => {
     document.querySelectorAll('.tooltip-content').forEach(c => c.style.display = 'none');
+  });
 });
