@@ -21,17 +21,20 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 .output { margin-top:2rem; padding:1rem; background:#e3f2fd; border-radius:8px; min-height:120px; }
 .placeholder { color:#666; font-style:italic; }
 .cost-breakdown { margin:1rem 0; }
-.cost-item { 
+
+/* Cost Item */
+.cost-item {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
-  border-bottom:1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 /* Label + Tooltip Wrapper */
 .label-with-tooltip {
+  position: relative;
   display: flex;
   align-items: center;
   flex: 1;
@@ -41,7 +44,7 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   flex: 1;
 }
 
-/* Tooltip Trigger - ? bubble */
+/* Tooltip Trigger */
 .tooltip-trigger {
   display: flex;
   align-items: center;
@@ -71,7 +74,7 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   border-radius: 8px;
   font-size: 0.85rem;
   line-height: 1.5;
-  max-width: 320px;
+  max-width: 340px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.25);
   z-index: 9999;
   opacity: 0;
@@ -84,7 +87,7 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   content: "";
   position: absolute;
   top: -6px;
-  left: 14px;
+  left: 16px;
   border: 6px solid transparent;
   border-bottom-color: #1a1a1a;
 }
@@ -114,16 +117,17 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   color: #aaa;
 }
 
-/* Show on hover */
-.label-with-tooltip:hover .tooltip-content {
+/* SHOW TOOLTIP */
+.label-with-tooltip:hover .tooltip-content,
+.tooltip-content.show {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-/* Mobile tap */
+/* Mobile */
 @media (pointer: coarse) {
-  .label-with-tooltip .tooltip-trigger:active ~ .tooltip-content {
+  .tooltip-trigger:active ~ .tooltip-content {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
