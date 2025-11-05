@@ -52,41 +52,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const salesToOffset = totalCosts / (profitMargin / 100);
     const round = num => Math.round(num);
 
-        // FINAL HTML — ? next to text, dollar OUTSIDE
+        // FINAL HTML — ? next to text, tooltip works
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
         <div class="cost-item">
-          <span>Direct Costs (Medical + Comp):</span>
-          <strong>$${round(directCosts).toLocaleString()}</strong>
+          <span class="cost-label">Direct Costs (Medical + Comp):</span>
+          <strong class="cost-value">$${round(directCosts).toLocaleString()}</strong>
         </div>
         <div class="cost-item">
-          <div class="label-with-tooltip">
-            <span class="label">Indirect Costs (Lost Productivity, etc.)</span>
+          <div class="cost-label-with-tooltip">
+            <span class="cost-label">Indirect Costs (Lost Productivity, etc.)</span>
             <span class="tooltip-trigger">?</span>
-            <div class="tooltip-content">
-              <p class="tooltip-title">Types of indirect costs may include:</p>
-              <ul class="tooltip-list">
-                <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
-                <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
-                <li>Overtime costs necessitated by the injury</li>
-                <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
-                <li>Training costs for a replacement worker</li>
-                <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
-                <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
-              </ul>
-            </div>
           </div>
-          <strong>$${round(indirectCosts).toLocaleString()}</strong>
+          <strong class="cost-value">$${round(indirectCosts).toLocaleString()}</strong>
+          <div class="tooltip-content">
+            <p class="tooltip-title">Types of indirect costs may include:</p>
+            <ul class="tooltip-list">
+              <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
+              <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
+              <li>Overtime costs necessitated by the injury</li>
+              <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
+              <li>Training costs for a replacement worker</li>
+              <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
+              <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
+            </ul>
+          </div>
         </div>
         <hr style="margin:1rem 0;">
         <div class="cost-item" style="font-size:1.1rem;">
-          <span>Total Estimated Cost:</span>
-          <strong style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong>
+          <span class="cost-label">Total Estimated Cost:</span>
+          <strong class="cost-value" style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong>
         </div>
         <div class="cost-item" style="font-size:1.1rem;">
-          <span>Sales Needed to Offset (at ${profitMargin}% margin):</span>
-          <strong style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong>
+          <span class="cost-label">Sales Needed to Offset (at ${profitMargin}% margin):</span>
+          <strong class="cost-value" style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong>
         </div>
       </div>
       <p class="note" style="margin-top:1rem; font-size:0.9rem; color:#555;">
