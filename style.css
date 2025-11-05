@@ -31,30 +31,27 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 @media (max-width: 480px) {
   .container { margin:1rem; padding:1rem; }
 }
-/* Tooltip */
-.tooltip {
-  position: relative;
-  cursor: help;
-  border-bottom: 1px dotted #555;
-}
-
-.tooltip .tooltip-icon {
+/* Enhanced Tooltip */
+.tooltip-trigger {
   display: inline-block;
-  width: 14px;
-  height: 14px;
-  margin-left: 4px;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
   background: #1976d2;
   color: white;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
-  line-height: 14px;
+  line-height: 18px;
   text-align: center;
   border-radius: 50%;
+  cursor: pointer;
   vertical-align: middle;
+  user-select: none;
 }
 
-.tooltip:hover::after {
-  content: attr(data-tooltip);
+.cost-item:hover .tooltip-content,
+.cost-item .tooltip-trigger:active ~ .tooltip-content {
+  display: block;
   position: absolute;
   left: 0;
   top: 100%;
@@ -63,22 +60,36 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   background: #333;
   color: white;
   font-size: 0.85rem;
-  line-height: 1.4;
-  white-space: pre-line;
+  line-height: 1.5;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   z-index: 1000;
-  max-width: 320px;
+  max-width: 340px;
   word-wrap: break-word;
 }
 
-.tooltip:hover::before {
+.cost-item .tooltip-content::before {
   content: "";
   position: absolute;
   left: 20px;
-  top: 100%;
-  margin-top: 2px;
+  top: -6px;
   border: 6px solid transparent;
   border-bottom-color: #333;
-  z-index: 1000;
+}
+
+.cost-item .tooltip-content ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.cost-item .tooltip-content li {
+  position: relative;
+  padding-left: 0.3rem;
+  text-indent: -0.3rem;
+}
+
+.cost-item .tooltip-content li::before {
+  content: "•";
+  position: absolute;
+  left: -0.8rem;
 }
