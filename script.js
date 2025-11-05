@@ -61,14 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // ROUND TO NEAREST DOLLAR
     const round = num => Math.round(num);
 
-        // Results HTML with working tooltip
+    // Results HTML with FIXED tooltip positioning
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
         <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
         <div class="cost-item">
-          <span class="label">Indirect Costs (Lost Productivity, etc.)</span>
-          <span class="tooltip-trigger">?</span>
+          <div class="label-with-tooltip">
+            <span class="label">Indirect Costs (Lost Productivity, etc.)</span>
+            <span class="tooltip-trigger">?</span>
+          </div>
+          <strong>$${round(indirectCosts).toLocaleString()}</strong>
           <div class="tooltip-content">
             <p class="tooltip-title">Types of indirect costs may include:</p>
             <ul class="tooltip-list">
@@ -81,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
             </ul>
           </div>
-          <strong>$${round(indirectCosts).toLocaleString()}</strong>
         </div>
         <hr style="margin:1rem 0;">
         <div class="cost-item" style="font-size:1.1rem;"><span>Total Estimated Cost:</span><strong style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong></div>
@@ -99,16 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
         <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
       </p>
     `;
+
     output.innerHTML = resultsHTML;
   }
 
   // Initial calc
   updateDirectCost();
-    // Ensure tooltips work on mobile tap
+
+  // Mobile tap toggle
   document.addEventListener('click', (e) => {
     if (e.target.classList.contains('tooltip-trigger')) {
       e.stopPropagation();
-      const content = e.target.nextElementSibling;
+      const content = e.target.parentElement.querySelector('.tooltip-content');
       const isVisible = content.style.opacity === '1';
       document.querySelectorAll('.tooltip-content').forEach(c => {
         c.style.opacity = '0';
