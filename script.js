@@ -85,4 +85,44 @@ document.addEventListener('DOMContentLoaded', () => {
           <strong>$${round(indirectCosts).toLocaleString()}</strong>
         </div>
         <hr style="margin:1rem 0;">
-        <div class="cost-item" style="font-size:1.1rem
+        <div class="cost-item" style="font-size:1.1rem;">
+          <span>Total Estimated Cost:</span>
+          <strong style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong>
+        </div>
+        <div class="cost-item" style="font-size:1.1rem;">
+          <span>Sales Needed to Offset (at ${profitMargin}% margin):</span>
+          <strong style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong>
+        </div>
+      </div>
+      <p class="note" style="margin-top:1rem; font-size:0.9rem; color:#555;">
+        This does not include additional possible costs from:
+        <ul style="margin:0.5rem 0 0.5rem 1.5rem; padding:0; color:#555; font-size:0.9rem;">
+          <li>OSHA fines and any associated legal action</li>
+          <li>Third-party liability and legal costs</li>
+          <li>Worker pain and suffering</li>
+          <li>Loss of good will from bad publicity</li>
+        </ul>
+        <hr style="margin:0.75rem 0; border-color:#ddd;">
+        <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
+      </p>
+    `;
+
+    output.innerHTML = resultsHTML;
+  }
+
+  updateDirectCost();
+
+  // MOBILE TAP + CLICK OUTSIDE
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.tooltip-trigger');
+    if (trigger) {
+      e.stopPropagation();
+      const content = trigger.nextElementSibling;
+      const isOpen = content.classList.contains('show');
+      document.querySelectorAll('.tooltip-content').forEach(c => c.classList.remove('show'));
+      if (!isOpen) content.classList.add('show');
+    } else {
+      document.querySelectorAll('.tooltip-content').forEach(c => c.classList.remove('show'));
+    }
+  });
+});
