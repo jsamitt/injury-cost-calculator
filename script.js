@@ -1,4 +1,4 @@
-// Injury Cost Calculator – OSHA Safety Pays Methodology
+// Injury Cost Calculator – OSHA Safety Pays + Rounded Dollars
 document.addEventListener('DOMContentLoaded', () => {
   const output = document.getElementById('output');
   const injurySelect = document.getElementById('injury-type');
@@ -58,19 +58,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCosts = directCosts + indirectCosts;
     const salesToOffset = totalCosts / (profitMargin / 100);
 
+    // ROUND TO NEAREST DOLLAR
+    const round = num => Math.round(num);
+
     // Results HTML
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
-        <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${directCosts.toLocaleString()}</strong></div>
+        <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
         <div class="cost-item"><span>Indirect Multiplier:</span><strong>${indirectMultiplier}x</strong></div>
-        <div class="cost-item"><span>Indirect Costs (Lost Productivity, etc.):</span><strong>$${indirectCosts.toLocaleString()}</strong></div>
+        <div class="cost-item"><span>Indirect Costs (Lost Productivity, etc.):</span><strong>$${round(indirectCosts).toLocaleString()}</strong></div>
         <hr style="margin:1rem 0;">
-        <div class="cost-item" style="font-size:1.1rem;"><span>Total Estimated Cost:</span><strong style="color:#d32f2f;">$${totalCosts.toLocaleString()}</strong></div>
-        <div class="cost-item" style="font-size:1.1rem;"><span>Sales Needed to Offset (at ${profitMargin}% margin):</span><strong style="color:#d32f2f;">$${salesToOffset.toLocaleString()}</strong></div>
+        <div class="cost-item" style="font-size:1.1rem;"><span>Total Estimated Cost:</span><strong style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong></div>
+        <div class="cost-item" style="font-size:1.1rem;"><span>Sales Needed to Offset (at ${profitMargin}% margin):</span><strong style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong></div>
       </div>
       <p class="note" style="margin-top:1rem; font-size:0.9rem; color:#555;">
-        <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023).</em>
+        <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
       </p>
     `;
 
