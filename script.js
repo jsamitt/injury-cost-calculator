@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <li>Loss of good will from bad publicity</li>
         </ul>
         <hr style="margin:0.75rem 0; border-color:#ddd;">
-        <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
+        <em>Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
       </p>
     `;
     
