@@ -20,26 +20,17 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 /* Output */
 .output { margin-top:2rem; padding:1rem; background:#e3f2fd; border-radius:8px; min-height:120px; }
 .placeholder { color:#666; font-style:italic; }
-.results { line-height:1.7; }
 .cost-breakdown { margin:1rem 0; }
-.cost-item { display:flex; justify-content:space-between; padding:0.5rem 0; border-bottom:1px solid #eee; }
-
-/* Disclaimer */
-.disclaimer { margin-top:2rem; font-size:0.875rem; color:#555; border-top:1px solid #eee; padding-top:1rem; }
-
-/* Responsive */
-@media (max-width: 480px) {
-  .container { margin:1rem; padding:1rem; }
-}
-/* FINAL TOOLTIP - ? bubble next to text */
-.cost-item {
+.cost-item { 
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
+  border-bottom:1px solid #eee;
 }
 
+/* Label + Tooltip Wrapper */
 .label-with-tooltip {
   display: flex;
   align-items: center;
@@ -50,6 +41,7 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   flex: 1;
 }
 
+/* Tooltip Trigger - ? bubble */
 .tooltip-trigger {
   display: flex;
   align-items: center;
@@ -68,6 +60,7 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   flex-shrink: 0;
 }
 
+/* Tooltip Content */
 .tooltip-content {
   position: absolute;
   top: calc(100% + 8px);
@@ -135,4 +128,12 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
     visibility: visible;
     pointer-events: auto;
   }
+}
+
+/* Disclaimer */
+.disclaimer { margin-top:2rem; font-size:0.875rem; color:#555; border-top:1px solid #eee; padding-top:1rem; }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container { margin:1rem; padding:1rem; }
 }
