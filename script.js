@@ -66,12 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
         <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
-        <div class="cost-item">
+                <div class="cost-item">
           <span>Indirect Costs (Lost Productivity, etc.)</span>
           <span class="tooltip-trigger">?</span>
-          <div class="tooltip-content" style="display:none;">
+          <div class="tooltip-content">
             <p style="margin:0 0 0.5rem 0; font-weight:600;">Types of indirect costs may include:</p>
-            <ul style="margin:0; padding-left:1.2rem; list-style:disc;">
+            <ul>
               <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
               <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
               <li>Overtime costs necessitated by the injury</li>
