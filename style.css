@@ -31,16 +31,21 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 @media (max-width: 480px) {
   .container { margin:1rem; padding:1rem; }
 }
-/* Enhanced Tooltip - Fixed & Clickable */
+/* WORKING TOOLTIP - Tested on GitHub Pages */
 .cost-item {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.5rem 0;
+}
+
+.label {
+  flex: 1;
 }
 
 .tooltip-trigger {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 18px;
@@ -48,8 +53,8 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
   margin-left: 6px;
   background: #1976d2;
   color: white;
-  font-size: 11px;
   font-weight: bold;
+  font-size: 11px;
   line-height: 1;
   border-radius: 50%;
   cursor: pointer;
@@ -58,66 +63,69 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 }
 
 .tooltip-content {
-  display: none;
   position: absolute;
-  left: 0;
   top: calc(100% + 8px);
-  background: #333;
+  left: 0;
+  background: #1a1a1a;
   color: white;
-  padding: 12px;
-  border-radius: 6px;
+  padding: 12px 14px;
+  border-radius: 8px;
   font-size: 0.85rem;
   line-height: 1.5;
-  max-width: 340px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 1000;
-  word-wrap: break-word;
+  max-width: 320px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
 }
 
 .tooltip-content::before {
   content: "";
   position: absolute;
-  left: 14px;
   top: -6px;
+  left: 14px;
   border: 6px solid transparent;
-  border-bottom-color: #333;
+  border-bottom-color: #1a1a1a;
 }
 
-.tooltip-content p {
+.tooltip-title {
   margin: 0 0 0.5rem 0;
   font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.tooltip-content ul {
+.tooltip-list {
   margin: 0;
   padding-left: 1.2rem;
   list-style: none;
 }
 
-.tooltip-content li {
+.tooltip-list li {
   position: relative;
-  padding-left: 0.5rem;
-  text-indent: -0.5rem;
+  padding-left: 0.4rem;
   margin-bottom: 0.25rem;
 }
 
-.tooltip-content li::before {
+.tooltip-list li::before {
   content: "•";
   position: absolute;
-  left: -0.8rem;
+  left: -0.9rem;
   color: #aaa;
 }
 
-/* Show on hover OR click */
-.cost-item:hover .tooltip-content,
-.cost-item .tooltip-trigger:active ~ .tooltip-content,
-.cost-item .tooltip-trigger:focus ~ .tooltip-content {
-  display: block;
+/* Show on hover */
+.cost-item:hover .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-/* Mobile tap support */
-@media (pointer: coarse) {
-  .tooltip-trigger:active ~ .tooltip-content {
-    display: block;
-  }
+/* Mobile tap */
+.tooltip-trigger:active ~ .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 }
