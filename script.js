@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const option = injurySelect.options[injurySelect.selectedIndex];
       const cost = option.getAttribute('data-cost');
       if (cost) {
-        customInput.value = ''; // Reset custom
+        customInput.value = '';
       }
     }
     calculateCosts();
@@ -35,19 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let directCosts = parseFloat(customInput.value) || 0;
     const profitMargin = parseFloat(profitInput.value) || 0;
 
-    // Get direct cost from selection if not custom
     if (injury && injury !== 'custom' && directCosts === 0) {
       const option = injurySelect.options[injurySelect.selectedIndex];
       directCosts = parseFloat(option.getAttribute('data-cost')) || 0;
     }
 
-    // Validation
     if (directCosts <= 0 || profitMargin <= 0) {
       output.innerHTML = '<p class="placeholder">Please enter valid direct costs and profit margin.</p>';
       return;
     }
 
-    // OSHA Indirect Multiplier (sliding scale)
     let indirectMultiplier;
     if (directCosts < 3000) indirectMultiplier = 4.5;
     else if (directCosts < 5000) indirectMultiplier = 1.6;
@@ -58,75 +55,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalCosts = directCosts + indirectCosts;
     const salesToOffset = totalCosts / (profitMargin / 100);
 
-    // ROUND TO NEAREST DOLLAR
     const round = num => Math.round(num);
 
-    // Results HTML with FIXED tooltip positioning
+    // FINAL HTML — ? next to text, tooltip inside wrapper
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
-        <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
+        <div class="cost-item">
+          <span>Direct Costs (Medical + Comp):</span>
+          <strong>$${round(directCosts).toLocaleString()}</strong>
+        </div>
         <div class="cost-item">
           <div class="label-with-tooltip">
             <span class="label">Indirect Costs (Lost Productivity, etc.)</span>
             <span class="tooltip-trigger">?</span>
+            <div class="tooltip-content">
+              <p class="tooltip-title">Types of indirect costs may include:</p>
+              <ul class="tooltip-list">
+                <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
+                <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
+                <li>Overtime costs necessitated by the injury</li>
+                <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
+                <li>Training costs for a replacement worker</li>
+                <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
+                <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
+              </ul>
+            </div>
           </div>
           <strong>$${round(indirectCosts).toLocaleString()}</strong>
-          <div class="tooltip-content">
-            <p class="tooltip-title">Types of indirect costs may include:</p>
-            <ul class="tooltip-list">
-              <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
-              <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
-              <li>Overtime costs necessitated by the injury</li>
-              <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
-              <li>Training costs for a replacement worker</li>
-              <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
-              <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
-            </ul>
-          </div>
         </div>
         <hr style="margin:1rem 0;">
-        <div class="cost-item" style="font-size:1.1rem;"><span>Total Estimated Cost:</span><strong style="color:#d32f2f;">$${round(totalCosts).toLocaleString()}</strong></div>
-        <div class="cost-item" style="font-size:1.1rem;"><span>Sales Needed to Offset (at ${profitMargin}% margin):</span><strong style="color:#d32f2f;">$${round(salesToOffset).toLocaleString()}</strong></div>
-      </div>
-      <p class="note" style="margin-top:1rem; font-size:0.9rem; color:#555;">
-        This does not include additional possible costs from:
-        <ul style="margin:0.5rem 0 0.5rem 1.5rem; padding:0; color:#555; font-size:0.9rem;">
-          <li>OSHA fines and any associated legal action</li>
-          <li>Third-party liability and legal costs</li>
-          <li>Worker pain and suffering</li>
-          <li>Loss of good will from bad publicity</li>
-        </ul>
-        <hr style="margin:0.75rem 0; border-color:#ddd;">
-        <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
-      </p>
-    `;
-
-    output.innerHTML = resultsHTML;
-  }
-
-  // Initial calc
-  updateDirectCost();
-
-  // Mobile tap toggle
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('tooltip-trigger')) {
-      e.stopPropagation();
-      const content = e.target.parentElement.querySelector('.tooltip-content');
-      const isVisible = content.style.opacity === '1';
-      document.querySelectorAll('.tooltip-content').forEach(c => {
-        c.style.opacity = '0';
-        c.style.visibility = 'hidden';
-      });
-      if (!isVisible) {
-        content.style.opacity = '1';
-        content.style.visibility = 'visible';
-      }
-    } else {
-      document.querySelectorAll('.tooltip-content').forEach(c => {
-        c.style.opacity = '0';
-        c.style.visibility = 'hidden';
-      });
-    }
-  });
-});
+        <div class="cost-item" style="font-size:1.1rem
