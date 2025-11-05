@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ROUND TO NEAREST DOLLAR
     const round = num => Math.round(num);
 
-        // Results HTML
+            // Results HTML
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
@@ -80,12 +80,13 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <p class="note" style="margin-top:1rem; font-size:0.9rem; color:#555;">
         This does not include additional possible costs from:
-        <ul>
+        <ul style="margin:0.5rem 0 0.5rem 1.5rem; padding:0; color:#555; font-size:0.9rem;">
           <li>OSHA fines and any associated legal action</li>
           <li>Third-party liability and legal costs</li>
           <li>Worker pain and suffering</li>
           <li>Loss of good will from bad publicity</li>
         </ul>
+        <hr style="margin:0.75rem 0; border-color:#ddd;">
         <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
       </p>
     `;
