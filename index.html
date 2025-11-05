@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Injury Cost Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Injury Cost Calculator</h1>
+      <p class="subtitle">Estimate the financial impact of a workplace injury (based on OSHA Safety Pays)</p>
+    </header>
+
+    <section class="inputs">
+      <div class="field">
+        <label for="injury-type">Injury Type <span class="req">*</span></label>
+        <select id="injury-type" required onchange="updateDirectCost()">
+          <option value="" disabled selected>Select...</option>
+          <option value="laceration" data-cost="8500">Laceration/Cut ($8,500)</option>
+          <option value="sprain" data-cost="15000">Sprain/Strain ($15,000)</option>
+          <option value="fracture" data-cost="66467">Fracture/Crush/Dislocation ($66,467)</option>
+          <option value="hernia" data-cost="30000">Hernia ($30,000)</option>
+          <option value="carpal-tunnel" data-cost="20000">Carpal Tunnel ($20,000)</option>
+          <option value="burn" data-cost="64019">Burns ($64,019)</option>
+          <option value="amputation" data-cost="125058">Amputation ($125,058)</option>
+          <option value="other-trauma" data-cost="68231">Other Trauma ($68,231)</option>
+          <option value="custom">Custom Amount</option>
+        </select>
+      </div>
+
+      <div class="field" id="custom-cost-field" style="display:none;">
+        <label for="custom-cost">Custom Direct Cost ($)</label>
+        <input type="number" id="custom-cost" min="0" step="100" placeholder="Enter amount" />
+      </div>
+
+      <div class="field">
+        <label for="profit-margin">Your Profit Margin (%) <span class="req">*</span></label>
+        <input type="number" id="profit-margin" min="0" max="100" step="0.1" placeholder="e.g., 5" value="5" required />
+      </div>
+    </section>
+
+    <section class="output" id="output" aria-live="polite">
+      <p class="placeholder">Select an injury type and profit margin to see the estimated costs.</p>
+    </section>
+
+    <footer class="disclaimer">
+      <p><strong>Disclaimer:</strong> These are estimates based on national averages. Actual costs vary by industry, location, and specifics. Not a substitute for professional advice.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
