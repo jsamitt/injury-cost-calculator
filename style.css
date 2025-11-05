@@ -31,8 +31,54 @@ select:focus, input:focus { outline:none; border-color:#1976d2; }
 @media (max-width: 480px) {
   .container { margin:1rem; padding:1rem; }
 }
-/* Tooltip Styling */
-.cost-item span[title] {
+/* Tooltip */
+.tooltip {
+  position: relative;
   cursor: help;
   border-bottom: 1px dotted #555;
+}
+
+.tooltip .tooltip-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  background: #1976d2;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.tooltip:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  background: #333;
+  color: white;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  white-space: pre-line;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  max-width: 320px;
+  word-wrap: break-word;
+}
+
+.tooltip:hover::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 100%;
+  margin-top: 2px;
+  border: 6px solid transparent;
+  border-bottom-color: #333;
+  z-index: 1000;
 }
