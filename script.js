@@ -61,23 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // ROUND TO NEAREST DOLLAR
     const round = num => Math.round(num);
 
-                // Results HTML with CSS tooltip
+        // Results HTML with enhanced tooltip
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
         <div class="cost-item"><span>Direct Costs (Medical + Comp):</span><strong>$${round(directCosts).toLocaleString()}</strong></div>
         <div class="cost-item">
-          <span class="tooltip" data-tooltip="Types of indirect costs may include:
-• Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)
-• Wage costs related to time lost through work stoppage associated with the worker injury
-• Overtime costs necessitated by the injury
-• Administrative time spent by supervisors, safety personnel, and clerical workers after an injury
-• Training costs for a replacement worker
-• Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees
-• Clean-up, repair, and replacement costs of damaged material, machinery, and property">
-            Indirect Costs (Lost Productivity, etc.)
-            <span class="tooltip-icon">i</span>
-          </span>
+          <span>Indirect Costs (Lost Productivity, etc.)</span>
+          <span class="tooltip-trigger">?</span>
+          <div class="tooltip-content" style="display:none;">
+            <p style="margin:0 0 0.5rem 0; font-weight:600;">Types of indirect costs may include:</p>
+            <ul style="margin:0; padding-left:1.2rem; list-style:disc;">
+              <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
+              <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
+              <li>Overtime costs necessitated by the injury</li>
+              <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
+              <li>Training costs for a replacement worker</li>
+              <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
+              <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
+            </ul>
+          </div>
           <strong>$${round(indirectCosts).toLocaleString()}</strong>
         </div>
         <hr style="margin:1rem 0;">
@@ -96,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         <em>Indirect costs include training, overtime, and lost productivity. Source: OSHA Safety Pays (NCCI data, 2022-2023). All figures rounded to nearest dollar.</em>
       </p>
     `;
-
     output.innerHTML = resultsHTML;
   }
 
