@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const salesToOffset = totalCosts / (profitMargin / 100);
     const round = num => Math.round(num);
 
-    // CORRECT HTML — <strong> OUTSIDE .label-with-tooltip
+        // FINAL HTML — ? next to text, tooltip works, dollar on right
     let resultsHTML = `
       <h3>Estimated Costs Breakdown</h3>
       <div class="cost-breakdown">
@@ -64,18 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="label-with-tooltip">
             <span class="label">Indirect Costs (Lost Productivity, etc.)</span>
             <span class="tooltip-trigger">?</span>
-          </div>
-          <div class="tooltip-content">
-            <p class="tooltip-title">Types of indirect costs may include:</p>
-            <ul class="tooltip-list">
-              <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
-              <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
-              <li>Overtime costs necessitated by the injury</li>
-              <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
-              <li>Training costs for a replacement worker</li>
-              <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
-              <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
-            </ul>
+            <div class="tooltip-content">
+              <p class="tooltip-title">Types of indirect costs may include:</p>
+              <ul class="tooltip-list">
+                <li>Any wages paid to injured workers for absences not covered by workers&#39; compensation (e.g. sick leave, PTO, STD)</li>
+                <li>Wage costs related to time lost through work stoppage associated with the worker injury</li>
+                <li>Overtime costs necessitated by the injury</li>
+                <li>Administrative time spent by supervisors, safety personnel, and clerical workers after an injury</li>
+                <li>Training costs for a replacement worker</li>
+                <li>Lost productivity related to work rescheduling, new employee learning curves, and accommodation of injured employees</li>
+                <li>Clean-up, repair, and replacement costs of damaged material, machinery, and property</li>
+              </ul>
+            </div>
           </div>
           <strong>$${round(indirectCosts).toLocaleString()}</strong>
         </div>
